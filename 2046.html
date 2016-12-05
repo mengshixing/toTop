@@ -42,14 +42,14 @@ position: relative;
 </body>
 
 <script>
-    $('.gotop').mouseenter(function () {
+    $(document).on('mouseenter','.gotop',function () {
         var top_scroll = $(document).scrollTop();
         if (top_scroll > 0) {
             $(this).next().show();
             $(this).hide();
         }
     })
-    $('.gotopdiv').mouseleave(function () {
+    $(document).on('mouseleave','.gotopdiv',function () {
         var top_scroll = $(document).scrollTop();
         if (top_scroll > 0) {
             $(this).prev().show()
@@ -60,7 +60,7 @@ position: relative;
 
 
     //点击返回顶部
-    $('.gotopdiv,.gotop').click(function () {
+    $(document).on('click','.gotopdiv,.gotop',function () {
         $(document).scrollTop(0);
         $('.gotop').hide()
         $('.gotopdiv').hide();
