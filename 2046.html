@@ -1,0 +1,82 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+ <script src="jquery-1.10.2.min.js"></script>
+<style>
+.gotop,.gotopdiv{
+    position: fixed;
+	bottom: 20px;
+    width: 52px;	
+    display: none;
+    height: 52px;    
+	right: 100px;
+    z-index: 999;
+	}
+
+.gotopdiv{
+    background: #60BF8B;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    width: 52px;
+    height: 55px;
+    color: #fff;
+    font-size: 15px;
+}
+.gotopdiv span{display: inline-block;
+padding: 10px;
+position: relative;
+}
+</style>
+
+
+</head>
+<body>
+
+<div style="position:absolute;width:600px;height:3000px;"></div>
+<img src="toTop.png" alt="" class="gotop" >
+
+<div class="gotopdiv" style="display: none;"><span>返回顶部</span></div>
+
+</body>
+
+<script>
+    $('.gotop').mouseenter(function () {
+        var top_scroll = $(document).scrollTop();
+        if (top_scroll > 0) {
+            $(this).next().show();
+            $(this).hide();
+        }
+    })
+    $('.gotopdiv').mouseleave(function () {
+        var top_scroll = $(document).scrollTop();
+        if (top_scroll > 0) {
+            $(this).prev().show()
+            $(this).hide();
+        }
+    })
+
+
+
+    //点击返回顶部
+    $('.gotopdiv,.gotop').click(function () {
+        $(document).scrollTop(0);
+        $('.gotop').hide()
+        $('.gotopdiv').hide();
+    })
+    //滚动时出现返回顶部
+    $(window).scroll(function () {
+        var top_scroll = $(document).scrollTop();
+        if (top_scroll > 0) {
+            $('img.gotop').css({ 'display': 'block', 'cursor': 'pointer' });
+            $('.gotopdiv').css({ 'display': 'none' });
+
+        } else {
+            $('img.gotop,.gotopdiv').css({ 'display': 'none' })
+        }
+
+    })
+</script>
+
+</html>
